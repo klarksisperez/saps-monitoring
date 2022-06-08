@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font: 14px "Nunito", sans-serif;
+	padding: 10px;
+	margin: 0;
+	background-color: #f7f7f7;
+}
+
+.flexHeader {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+
+a {
+	color: #00b7ff;
+}
+
+body select {
+	padding: 10px 70px 10px 13px;
+	max-width: 100%;
+	height: auto;
+	border: 1px solid #e3e3e3;
+	border-radius: 3px;
+	background: url("https://i.ibb.co/b7xjLrB/selectbox-arrow.png") right center
+		no-repeat;
+	background-color: #f2f2f2;
+	color: #444444;
+	line-height: 16px;
+	appearance: none;
+	/* this is must */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+#aboutModalImg {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+}
+
+/* body select.select_box option */
+body select option {
+	padding: 0 4px;
+}
+
+/* for Edge */
+select::-ms-expand {
+	display: none;
+}
+
+select:disabled::-ms-expand {
+	background: #f60;
+}
+
+#smSensor0 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor1 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor2 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor3 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor4 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor5 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor6 {
+	width: 100%;
+	background-color: green;
+}
+
+#smSensor7 {
+	width: 100%;
+	background-color: green;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px; /* Set the fixed height of the footer here */
+	line-height: 60px; /* Vertically center the text there */
+	background-color: #f5f5f5;
+}
