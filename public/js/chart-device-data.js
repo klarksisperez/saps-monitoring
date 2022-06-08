@@ -280,7 +280,7 @@ $(document).ready(() => {
 
 			//SM0
 			document.getElementById("smSensor0").innerHTML =
-				" Soil Moisture Sensor #1: " +
+				"&nbsp Soil Moisture Sensor #1: " +
 				parseFloat(messageData.IotData.smSensor0).toFixed(2) +
 				"%";
 			if (parseFloat(messageData.IotData.smSensor0).toFixed(2) <= 60) {
@@ -294,7 +294,7 @@ $(document).ready(() => {
 
 			//SM1
 			document.getElementById("smSensor1").innerHTML =
-				" Soil Moisture Sensor #2: " +
+				"&nbsp Soil Moisture Sensor #2: " +
 				parseFloat(messageData.IotData.smSensor1).toFixed(2) +
 				"%";
 			document.getElementById("smSensor1").style.width = `${parseFloat(
@@ -309,7 +309,7 @@ $(document).ready(() => {
 
 			//SM2
 			document.getElementById("smSensor2").innerHTML =
-				" Soil Moisture Sensor #3: " +
+				"&nbsp Soil Moisture Sensor #3: " +
 				parseFloat(messageData.IotData.smSensor2).toFixed(2) +
 				"%";
 			document.getElementById("smSensor2").style.width = `${parseFloat(
@@ -324,7 +324,7 @@ $(document).ready(() => {
 
 			//SM3
 			document.getElementById("smSensor3").innerHTML =
-				" Soil Moisture Sensor #4: " +
+				"&nbsp Soil Moisture Sensor #4: " +
 				parseFloat(messageData.IotData.smSensor3).toFixed(2) +
 				"%";
 			document.getElementById("smSensor3").style.width = `${parseFloat(
@@ -339,7 +339,7 @@ $(document).ready(() => {
 
 			//SM4
 			document.getElementById("smSensor4").innerHTML =
-				" Soil Moisture Sensor #5: " +
+				"&nbsp Soil Moisture Sensor #5: " +
 				parseFloat(messageData.IotData.smSensor4).toFixed(2) +
 				"%";
 			document.getElementById("smSensor4").style.width = `${parseFloat(
@@ -354,7 +354,7 @@ $(document).ready(() => {
 
 			//SM5
 			document.getElementById("smSensor5").innerHTML =
-				" Soil Moisture Sensor #6: " +
+				"&nbsp Soil Moisture Sensor #6: " +
 				parseFloat(messageData.IotData.smSensor5).toFixed(2) +
 				"%";
 			document.getElementById("smSensor5").style.width = `${parseFloat(
@@ -369,7 +369,7 @@ $(document).ready(() => {
 
 			//SM6
 			document.getElementById("smSensor6").innerHTML =
-				" Soil Moisture Sensor #7: " +
+				"&nbsp Soil Moisture Sensor #7: " +
 				parseFloat(messageData.IotData.smSensor6).toFixed(2) +
 				"%";
 			document.getElementById("smSensor6").style.width = `${parseFloat(
@@ -384,7 +384,7 @@ $(document).ready(() => {
 
 			//SM7
 			document.getElementById("smSensor7").innerHTML =
-				" Soil Moisture Sensor #8: " +
+				"&nbsp Soil Moisture Sensor #8: " +
 				parseFloat(messageData.IotData.smSensor7).toFixed(2) +
 				"%";
 			document.getElementById("smSensor7").style.width = `${parseFloat(

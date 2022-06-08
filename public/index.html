@@ -16,6 +16,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="icon" href="https://i.ibb.co/D98mRkz/278220887-339731948233155-6578708879635500097-n.png">
+
     <title>Temperature &amp; Humidity Real-time Data</title>
 </head>
 
@@ -24,7 +26,6 @@
         <nav class="navbar navbar-dark bg-success">
             <div class="container-fluid text-white">
             <a class="navbar-brand" href="#">
-                <img src="https://i.ibb.co/D98mRkz/278220887-339731948233155-6578708879635500097-n.png" alt="" width="32" height="30" class="d-inline-block align-text-top border border-dark">
                 SAPS: Dashboard with Real Time Monitoring
             </a>
             <span id="lastUpdated">Last Updated: ---</span>
@@ -48,112 +49,121 @@
     </div>
 
     <hr/>
-
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-6">
-            <h3>Soil Moisture Sensor Real-time Data</h3>
-          </div>
-          <div class="col-6">
-            <h3>Temperature & Humidity Real-time Data</h3>
-          </div>
-        </div>
-    </div>
-    <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-6">
-                <div id="smSensor0">
-                    &nbsp;Soil Moisture Sensor #1: ----
-                </div><br>
-                <div id="smSensor1">
-                    &nbsp;Soil Moisture Sensor #2: ----
-                </div><br>
-                <div id="smSensor2">
-                    &nbsp;Soil Moisture Sensor #3: ----
-                </div><br>
-                <div id="smSensor3">
-                    &nbsp;Soil Moisture Sensor #4: ----
-                </div><br>
-                <div id="smSensor4">
-                    &nbsp;Soil Moisture Sensor #5: ----
-                </div><br>
-                <div id="smSensor5">
-                    &nbsp;Soil Moisture Sensor #6: ----
-                </div><br>
-                <div id="smSensor6">
-                    &nbsp;Soil Moisture Sensor #7: ----
-                </div><br>
-                <div id="smSensor7">
-                    &nbsp;Soil Moisture Sensor #8: ----
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <br>
+                        <h3>Soil Moisture Sensor Real-time Data</h3>
+                        <br>
+                    </div>
+                    <div class="col-12">
+                        <div id="smSensor0">
+                            &nbsp;Soil Moisture Sensor #1: ----
+                        </div><br>
+                        <div id="smSensor1">
+                            &nbsp;Soil Moisture Sensor #2: ----
+                        </div><br>
+                        <div id="smSensor2">
+                            &nbsp;Soil Moisture Sensor #3: ----
+                        </div><br>
+                        <div id="smSensor3">
+                            &nbsp;Soil Moisture Sensor #4: ----
+                        </div><br>
+                        <div id="smSensor4">
+                            &nbsp;Soil Moisture Sensor #5: ----
+                        </div><br>
+                        <div id="smSensor5">
+                            &nbsp;Soil Moisture Sensor #6: ----
+                        </div><br>
+                        <div id="smSensor6">
+                            &nbsp;Soil Moisture Sensor #7: ----
+                        </div><br>
+                        <div id="smSensor7">
+                            &nbsp;Soil Moisture Sensor #8: ----
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6">
-                <canvas id="iotChart"></canvas>
+        </div>
+        <div class="col-sm-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <br>
+                        <h3>Temperature & Humidity Real-time Data</h3>
+                        <br>
+                    </div>
+                    <div class="col-12">
+                        <canvas id="iotChart" width="100%"></canvas>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
     <br/>
 
 
     <footer class="footer bg-dark border-top">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-11">
+            <div class="d-flex bd-highlight mb-3">
+                <div class="me-auto p-2 bd-highlight">
                     <span class="text-white">&copy; 2022 | The SAPS Initiative</span>
                 </div>
-                <div class="col-1">
+                <div class="p-2 bd-highlight">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#aboutSAPS">
-                        About SAPS
-                      </button>
-                      <div class="modal fade text-black" id="aboutSAPS" tabindex="-1" aria-labelledby="aboutSAPS" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="aboutSAPS">SAPS: About</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="https://i.ibb.co/D98mRkz/278220887-339731948233155-6578708879635500097-n.png" id="aboutModalImg">
-                                <h3>ABSTRACT:</h3>
-                                <h6>The study developed the “SMART GARDEN AND DATA ANALYTICS/MONITORING FOR PLANT SUSTAINABILITY (SAPS)”. The objectives of the study are to create an IOT device that allows a user to monitor the status of the plant being raised; monitor the temperature and humidity of the surroundings, and to keep track of the moisture of the soil. The system was developed using Raspberry Pi.</h6> 
+                            About SAPS
+                    </button>
+                </div>
 
-                                <br>
+            </div>
+                <div class="modal fade text-black" id="aboutSAPS" tabindex="-1" aria-labelledby="aboutSAPS" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="aboutSAPS">SAPS: About</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="https://i.ibb.co/D98mRkz/278220887-339731948233155-6578708879635500097-n.png" id="aboutModalImg">
+                        <h3>ABSTRACT:</h3>
+                        <h6>The study developed the “SMART GARDEN AND DATA ANALYTICS/MONITORING FOR PLANT SUSTAINABILITY (SAPS)”. The objectives of the study are to create an IOT device that allows a user to monitor the status of the plant being raised; monitor the temperature and humidity of the surroundings, and to keep track of the moisture of the soil. The system was developed using Raspberry Pi.</h6> 
 
-                                <h3>About the Initiative:</h3>
-                                <h6>The aim of this research is to develop an all-around monitoring and solution for Plant Enthusiasts (Plantito/Plantita) that will monitor REAL-TIME data about its surroundings, and irrigate the plants when it needs it.</h6>
+                        <br>
 
-                                <br>
+                        <h3>About the Initiative:</h3>
+                        <h6>The aim of this research is to develop an all-around monitoring and solution for Plant Enthusiasts (Plantito/Plantita) that will monitor REAL-TIME data about its surroundings, and irrigate the plants when it needs it.</h6>
 
-                                <h3>The Researchers:</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <a href="mailto:daren.mendoza@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
-                                        | Daren Mendoza
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="mailto:rowellrenz.pagayunan@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
-                                        | Rowell Renz Pagayunan
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="mailto:markstephen.ranada@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
-                                        | Mark Stephen Rañada
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="mailto:klarkjasper.sisperez@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
-                                        | Klark Jasper Sisperez
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        <br>
+
+                        <h3>The Researchers:</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="mailto:daren.mendoza@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
+                                | Daren Mendoza
+                            </li>
+                            <li class="list-group-item">
+                                <a href="mailto:rowellrenz.pagayunan@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
+                                | Rowell Renz Pagayunan
+                            </li>
+                            <li class="list-group-item">
+                                <a href="mailto:markstephen.ranada@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
+                                | Mark Stephen Rañada
+                            </li>
+                            <li class="list-group-item">
+                                <a href="mailto:klarkjasper.sisperez@tup.edu.ph" class="fa fa-envelope text-black" aria-hidden="true"></a>
+                                | Klark Jasper Sisperez
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
                 </div>
               </div>
-          </div>
         </div>
     </footer>
 </body>
