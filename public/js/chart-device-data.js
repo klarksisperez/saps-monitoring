@@ -17,6 +17,7 @@ $(document).ready(() => {
 			this.timeData = new Array(this.maxLen);
 			this.temperatureData = new Array(this.maxLen);
 			this.humidityData = new Array(this.maxLen);
+			this.lightData = new Array(this.maxLen);
 
 			this.smSensor0Data = new Array(this.maxLen);
 			this.smSensor1Data = new Array(this.maxLen);
@@ -32,6 +33,7 @@ $(document).ready(() => {
 			time,
 			temperature,
 			humidity,
+			light,
 			smSensor0,
 			smSensor1,
 			smSensor2,
@@ -43,6 +45,7 @@ $(document).ready(() => {
 		) {
 			this.timeData.push(time);
 			this.temperatureData.push(temperature);
+			this.lightData.push(light);
 			this.humidityData.push(humidity || null);
 
 			this.smSensor0Data.push(smSensor0);
@@ -58,6 +61,7 @@ $(document).ready(() => {
 				this.timeData.shift();
 				this.temperatureData.shift();
 				this.humidityData.shift();
+				this.lightData.shift();
 
 				this.smSensor0Data.shift();
 				this.smSensor1Data.shift();
@@ -188,6 +192,7 @@ $(document).ready(() => {
 				!messageData.MessageDate ||
 				(!messageData.IotData.temperature &&
 					!messageData.IotData.humidity &&
+					!messageData.IotData.light &&
 					!messageData.IotData.smSensor0 &&
 					!messageData.IotData.smSensor1 &&
 					!messageData.IotData.smSensor2 &&
@@ -210,6 +215,7 @@ $(document).ready(() => {
 					messageData.MessageDate,
 					messageData.IotData.temperature,
 					messageData.IotData.humidity,
+					messageData.IotData.light,
 
 					messageData.IotData.smSensor0,
 					messageData.IotData.smSensor1,
@@ -232,6 +238,7 @@ $(document).ready(() => {
 					messageData.MessageDate,
 					messageData.IotData.temperature,
 					messageData.IotData.humidity,
+					messageData.IotData.light,
 
 					messageData.IotData.smSensor0,
 					messageData.IotData.smSensor1,
@@ -258,24 +265,70 @@ $(document).ready(() => {
 			}
 			myLineChart.update();
 
+			var dateToday = new Date();
+
+			// EMAIL config
+			const subjEmail = "";
+			const textEmail = "";
+
+			if (messageData.IotData.temperature >= 30){
+				subjEmail = "Temperature Alert: HIGH!";
+				textEmail = "As of " + dateToday + ", Temperature is considered HIGH at around " + parseFloat(messageData.IotData.temperature).toFixed(2) + "°C, this can affect your plant's sustainability.";
+			}
+
+			else if(messageData.IotData.smSensor0 ||messageData.IotData.smSensor1 ||messageData.IotData.smSensor2 ||messageData.IotData.smSensor3 > 60){
+				subjEmail = "Soil Moisture Content: LOW!"
+				textEmail = "As of " + dateToday + ", Average Soil Moisture Content is below 50%, this can affect your plant's sustainability.";
+			}
+
+			var nodemailer = require('nodemailer');
+
+			var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+				user: 'sapsdmn@gmail.com',
+				pass: 'sapsadmin1234'
+			}
+			});
+
+			var mailOptions = {
+			from: 'sapsdmn@gmail.com',
+			to: 'ksisperez@gmail.com',
+			subject: subjEmail,
+			text: textEmail
+			};
+
+			transporter.sendMail(mailOptions, function(error, info){
+			if (error) {
+				console.log(error);
+			} else {
+				console.log('Email sent: ' + info.response);
+			}
+			});
+
 			// DATA READING ON WEB
 
 			//Time and Date
 			document.getElementById("lastUpdated").innerHTML =
-				"Last Updated: " + document.lastModified;
+				"Last Updated: " + dateToday;
 
 			//Latest Temperature
 			document.getElementById("temp").innerHTML =
-				"Temperature: " +
+				"Temperature (°C): " +
 				parseFloat(messageData.IotData.temperature).toFixed(2) +
 				"°C";
 
 			//Latest Humidity
 			document.getElementById("humid").innerHTML =
-				"Humidity: " +
+				"Humidity (%): " +
 				parseFloat(messageData.IotData.humidity).toFixed(2) +
 				"%";
 
+			//Latest Light Sensor
+			document.getElementById("light").innerHTML =
+				"Light (lx): " +
+				parseFloat(messageData.IotData.light).toFixed(2) +
+				"lx";
 			//SENSORS
 
 			//SM0
