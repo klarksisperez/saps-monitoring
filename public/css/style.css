@@ -111,6 +111,9 @@ select:disabled::-ms-expand {
 
 @media only screen and (max-width: 480px) {
 	#title {
-	  font-size: 100%;
+		font-size: 100%;
+	}
+	#temp, #humid, #light {
+		font-size: 60%;
 	}
   }
