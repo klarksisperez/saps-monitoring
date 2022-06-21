@@ -267,45 +267,6 @@ $(document).ready(() => {
 
 			var dateToday = new Date();
 
-			// EMAIL config
-			const subjEmail = "";
-			const textEmail = "";
-
-			if (messageData.IotData.temperature >= 30){
-				subjEmail = "Temperature Alert: HIGH!";
-				textEmail = "As of " + dateToday + ", Temperature is considered HIGH at around " + parseFloat(messageData.IotData.temperature).toFixed(2) + "°C, this can affect your plant's sustainability.";
-			}
-
-			else if(messageData.IotData.smSensor0 ||messageData.IotData.smSensor1 ||messageData.IotData.smSensor2 ||messageData.IotData.smSensor3 > 60){
-				subjEmail = "Soil Moisture Content: LOW!"
-				textEmail = "As of " + dateToday + ", Average Soil Moisture Content is below 50%, this can affect your plant's sustainability.";
-			}
-
-			var nodemailer = require('nodemailer');
-
-			var transporter = nodemailer.createTransport({
-			service: 'gmail',
-			auth: {
-				user: 'sapsdmn@gmail.com',
-				pass: 'sapsadmin1234'
-			}
-			});
-
-			var mailOptions = {
-			from: 'sapsdmn@gmail.com',
-			to: 'ksisperez@gmail.com',
-			subject: subjEmail,
-			text: textEmail
-			};
-
-			transporter.sendMail(mailOptions, function(error, info){
-			if (error) {
-				console.log(error);
-			} else {
-				console.log('Email sent: ' + info.response);
-			}
-			});
-
 			// DATA READING ON WEB
 
 			//Time and Date
