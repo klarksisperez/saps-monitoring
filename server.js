@@ -46,6 +46,30 @@ server.listen(process.env.PORT || '5000', () => {
   console.log('Listening on %d.', server.address().port);
 });
 
+var nodemailer = require('nodemailer');
+
+//real values
+
+/*
+var transporter = nodemailer.createTransport({
+service: 'hotmail',
+auth: {
+  user: 'sapsdmn@gmail.com',
+  pass: 'sapsadmin1234'
+}
+});
+*/
+
+//test
+var transporter = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+      user: 'garrick.nikolaus71@ethereal.email',
+      pass: 'jQaDx8RjPq7fMgn5nd'
+  }
+});
+
 const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsumerGroup);
 
 (async () => {
@@ -58,6 +82,22 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
       };
 
       wss.broadcast(JSON.stringify(payload));
+      if(payload.IotData.smSensor0 < 60){
+        var mailOptions = {
+          from: 'sapsdmn@gmail.com',
+          to: 'jasper.sisperez@gmail.com',
+          subject: 'Soil Moisture Warning',
+          text: "Soil Moisture within smSensor0's area is around " + parseFloat(payload.IotData.smSensor0).toFixed(2) + "%, which is considered insufficient. The system will pump water within 3-5 minutes to ensure plant sustainability... SUMMARY: Temperature - " + parseFloat(payload.IotData.temperature).toFixed(2) + "°C, Humidity - " + parseFloat(payload.IotData.humidity).toFixed(2) + "%, Lux - " + parseFloat(payload.IotData.light).toFixed(2) + "lx, smSensor0 - " + parseFloat(payload.IotData.smSensor0).toFixed(2) + "%."
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+          console.log('Email sent: ' + info.response);
+          }
+        });
+      }
+
     } catch (err) {
       console.error('Error broadcasting: [%s] from [%s].', err, message);
     }

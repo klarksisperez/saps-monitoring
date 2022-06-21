@@ -410,6 +410,7 @@ $(document).ready(() => {
 			} else {
 				document.getElementById("smSensor7").style.background = "green";
 			}
+
 		} catch (err) {
 			console.error(err);
 		}
