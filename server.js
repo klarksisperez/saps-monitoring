@@ -65,8 +65,8 @@ var transporter = nodemailer.createTransport({
   host: 'smtp.ethereal.email',
   port: 587,
   auth: {
-      user: 'garrick.nikolaus71@ethereal.email',
-      pass: 'jQaDx8RjPq7fMgn5nd'
+    user: 'adelbert.purdy31@ethereal.email',
+    pass: 'Msz1dV6YWa55qweReT'
   }
 });
 
@@ -82,12 +82,20 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
       };
 
       wss.broadcast(JSON.stringify(payload));
+
+      const smSensor0Parsed = parseFloat(payload.IotData.smSensor0).toFixed(2);
+      const temperatureParsed = parseFloat(payload.IotData.temperature).toFixed(2);
+      const humidityParsed = parseFloat(payload.IotData.humidity).toFixed(2);
+      const lightParsed = parseFloat(payload.IotData.light).toFixed(2);
+      const html = "<h1>Soil Moisture Warning!</h1><p>Soil Moisture within smSensor0's area is around <b>" + smSensor0Parsed +"%</b>, which is considered insufficient. The system will pump water within 3-5 minutes to ensure <b><i>Plant Sustainability</i></b>.</p><h2>Summary</h2><ul><li>Temperature: <b>" + temperatureParsed + "°C</b></li><li>Humidity: <b>" + humidityParsed + "%</b></li><li>Lux: <b>" + lightParsed + "lx</b></li><li>smSensor0: <b>" + smSensor0Parsed + "%</b></li></ul>" 
+
       if(payload.IotData.smSensor0 < 60){
         var mailOptions = {
           from: 'sapsdmn@gmail.com',
           to: 'jasper.sisperez@gmail.com',
           subject: 'Soil Moisture Warning',
-          text: "Soil Moisture within smSensor0's area is around " + parseFloat(payload.IotData.smSensor0).toFixed(2) + "%, which is considered insufficient. The system will pump water within 3-5 minutes to ensure plant sustainability... SUMMARY: Temperature - " + parseFloat(payload.IotData.temperature).toFixed(2) + "°C, Humidity - " + parseFloat(payload.IotData.humidity).toFixed(2) + "%, Lux - " + parseFloat(payload.IotData.light).toFixed(2) + "lx, smSensor0 - " + parseFloat(payload.IotData.smSensor0).toFixed(2) + "%."
+          text: "Soil Moisture within smSensor0's area is around " + smSensor0Parsed  + "%, which is considered insufficient. The system will pump water within 3-5 minutes to ensure plant sustainability... SUMMARY: Temperature - " + temperatureParsed + "°C, Humidity - " + humidityParsed + "%, Lux - " + lightParsed + "lx, smSensor0 - " + smSensor0Parsed + "%.",
+          html: html
         };
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
